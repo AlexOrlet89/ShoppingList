@@ -1,6 +1,6 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, useReducer } from 'react';
 
-const initialItems = [{ text: 'Eggs' }];
+const initialItems = [{ text: 'Eggs' }, { text: 'Bagels' }];
 
 const itemReducer = (state, action) => {
   switch (action.type) {
