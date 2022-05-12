@@ -1,4 +1,4 @@
-import React, { createContext } from 'react';
+import React, { createContext, useContext } from 'react';
 
 const initialItems = [{ text: 'Eggs' }];
 
@@ -22,4 +22,13 @@ export const ItemProvider = ({ children }) => {
       {children}
     </ItemContext.Provider>
   );
+};
+
+export const useItems = () => {
+  const context = useContext(ItemContext);
+
+  if (context === undefined)
+    throw new Error('Must be called from within a provider');
+
+  return context;
 };
