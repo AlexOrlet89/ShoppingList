@@ -1,6 +1,7 @@
 import React from 'react';
 import AddItem from '../components/AddItem';
 import { useItems } from '../context/ItemProvider';
+import ListItem from './ListItem';
 
 export default function List() {
   const { items } = useItems();
@@ -10,7 +11,9 @@ export default function List() {
       <AddItem />
       <ul>
         {items.map((item) => (
-          <li key={item.text}>{item.text}</li>
+          <li key={item.text}>
+            <ListItem item={item} />
+          </li>
         ))}
       </ul>
     </>
