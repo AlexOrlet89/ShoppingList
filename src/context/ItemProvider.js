@@ -6,6 +6,7 @@ const itemReducer = (state, action) => {
   switch (action.type) {
     case 'ADD_ITEM':
       console.log(state, action);
+      return [{ text: action.payload.text }, ...state];
   }
 };
 
