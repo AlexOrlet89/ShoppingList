@@ -21,10 +21,11 @@ export default function ListItem({ item }) {
         }}
       >
         <input
+          placeholder={`Editing ${item.text}`}
           value={item.text}
           onChange={(e) => handleEditItem({ ...item, text: e.target.value })}
         />
-        <button>Save</button>
+        <button placeholder={`Savebutton for ${item.text}`}>Save</button>
       </form>
     );
   } else {
@@ -40,8 +41,18 @@ export default function ListItem({ item }) {
       <div>
         {/* for instance, {item.text} {item.id} */}
         {content}
-        <button onClick={() => handleDeleteItem(item.id)}>Delete</button>
-        <button onClick={handleEditButton}>Edit</button>
+        <button
+          placeholder="Delete Button"
+          onClick={() => handleDeleteItem(item.id)}
+        >
+          Delete {item.text}
+        </button>
+        <button
+          placeholder={`Edit Button for ${item.text}`}
+          onClick={handleEditButton}
+        >
+          Edit
+        </button>
         <input
           placeholder="Bought Checkbox"
           checked={item.bought}
