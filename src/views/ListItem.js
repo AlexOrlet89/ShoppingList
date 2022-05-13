@@ -43,6 +43,7 @@ export default function ListItem({ item }) {
         <button onClick={() => handleDeleteItem(item.id)}>Delete</button>
         <button onClick={handleEditButton}>Edit</button>
         <input
+          placeholder="Bought Checkbox"
           checked={item.bought}
           onChange={(e) => {
             handleEditItem({ ...item, bought: e.target.checked });

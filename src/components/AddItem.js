@@ -18,6 +18,7 @@ export default function AddItem() {
     <>
       <form onSubmit={handleSubmit}>
         <input
+          placeholder="Add a new item"
           type="text"
           value={newItem}
           onChange={(e) => setNewItem(e.target.value)}
