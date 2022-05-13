@@ -6,7 +6,7 @@ export default function ListItem({ item }) {
   const [isEditing, setIsEditing] = useState(false);
 
   const handleEditButton = () => {
-    console.log(item);
+    // console.log(item);
     setIsEditing(true);
   };
 

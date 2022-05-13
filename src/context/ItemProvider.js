@@ -13,13 +13,13 @@ const itemReducer = (state, action) => {
         ...state,
       ];
     case 'DELETE_ITEM':
-      console.log('DELETE_ITEM', action.payload.id);
+      // console.log('DELETE_ITEM', action.payload.id);
       return state.filter((item) => item.id !== action.payload.id);
     case 'EDIT_ITEM':
       // console.log('editing is working', action.payload.id, action.payload.text);
       return state.map((item) => {
         if (item.id === action.payload.item.id) {
-          console.log(item, action.payload.item);
+          // console.log(item, action.payload.item);
           return {
             ...item,
             text: action.payload.item.text,
@@ -29,7 +29,7 @@ const itemReducer = (state, action) => {
         return item;
       });
     default:
-      console.log('nothing happened, boss');
+    // console.log('nothing happened, boss');
     //   return state;
   }
 };
