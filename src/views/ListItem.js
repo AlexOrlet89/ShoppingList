@@ -23,7 +23,11 @@ export default function ListItem({ item }) {
       </form>
     );
   } else {
-    content = <>{item.text}</>;
+    content = (
+      <p style={{ textDecoration: item.bought ? 'line-through' : null }}>
+        {item.text}
+      </p>
+    );
   }
 
   return (
@@ -33,7 +37,13 @@ export default function ListItem({ item }) {
         {content}
         <button onClick={() => handleDeleteItem(item.id)}>Delete</button>
         <button onClick={handleEditButton}>Edit</button>
-        <input type="checkbox"></input>
+        <input
+          checked={item.bought}
+          onChange={(e) => {
+            handleEditItem({ ...item, bought: e.target.checked });
+          }}
+          type="checkbox"
+        ></input>
       </div>
     </>
   );

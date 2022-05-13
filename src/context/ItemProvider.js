@@ -1,14 +1,17 @@
 import React, { createContext, useContext, useReducer } from 'react';
 
 const initialItems = [
-  { id: Date.now(), text: 'Eggs' },
-  { id: 2, text: 'Bread' },
+  { id: Date.now(), text: 'Eggs', bought: false },
+  { id: 2, text: 'Bread', bought: false },
 ];
 
 const itemReducer = (state, action) => {
   switch (action.type) {
     case 'ADD_ITEM':
-      return [{ id: Date.now(), text: action.payload.text }, ...state];
+      return [
+        { id: Date.now(), text: action.payload.text, bought: false },
+        ...state,
+      ];
     case 'DELETE_ITEM':
       console.log('DELETE_ITEM', action.payload.id);
       return state.filter((item) => item.id !== action.payload.id);
@@ -17,7 +20,11 @@ const itemReducer = (state, action) => {
       return state.map((item) => {
         if (item.id === action.payload.item.id) {
           console.log(item, action.payload.item);
-          return { ...item, text: action.payload.item.text };
+          return {
+            ...item,
+            text: action.payload.item.text,
+            bought: action.payload.item.bought,
+          };
         }
         return item;
       });
