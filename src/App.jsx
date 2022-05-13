@@ -1,3 +1,11 @@
+import Header from './views/Header';
+import List from './views/List';
+
 export default function App() {
-  return <h1>Hello World</h1>;
+  return (
+    <>
+      <Header />
+      <List />
+    </>
+  );
 }
