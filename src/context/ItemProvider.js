@@ -12,9 +12,16 @@ const itemReducer = (state, action) => {
     case 'DELETE_ITEM':
       console.log('DELETE_ITEM', action.payload.id);
       return state.filter((item) => item.id !== action.payload.id);
+    case 'EDIT_ITEM':
+      state.map((item) => {
+        if (item.id === action.payload.item.id) {
+          const { text } = action.payload.item.text;
+          return { ...item, text };
+        }
+        return item;
+      });
     default:
       console.log('nothing happened, boss');
-      return state.filter((item) => item.id !== action.payload.id);
     //   return state;
   }
 };
@@ -29,9 +36,13 @@ export const ItemProvider = ({ children }) => {
   const handleDeleteItem = (id) => {
     dispatch({ type: 'DELETE_ITEM', payload: { id } });
   };
-
+  const handleEditItem = (id, text) => {
+    dispatch({ type: 'EDIT_ITEM', payload: { id, text } });
+  };
   return (
-    <ItemContext.Provider value={{ items, handleAddItem, handleDeleteItem }}>
+    <ItemContext.Provider
+      value={{ items, handleAddItem, handleDeleteItem, handleEditItem }}
+    >
       {children}
     </ItemContext.Provider>
   );
