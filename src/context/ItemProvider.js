@@ -1,14 +1,17 @@
 import React, { createContext, useContext, useReducer } from 'react';
 
-const initialItems = [{ id: Date.now(), text: 'Eggs' }];
+const initialItems = [
+  { id: Date.now(), text: 'Eggs' },
+  { id: 2, text: 'Bread' },
+];
 
 const itemReducer = (state, action) => {
   switch (action.type) {
     case 'ADD_ITEM':
       return [{ text: action.payload.text }, ...state];
     case 'DELETE_ITEM':
-      console.log('DELETE_ITEM');
-      console.log(state, action);
+      console.log('DELETE_ITEM', action.payload.id);
+      return state.filter((item) => item.id !== action.payload.id);
     default:
       console.log('nothing happened, boss');
       return state.filter((item) => item.id !== action.payload.id);
