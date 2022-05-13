@@ -14,7 +14,12 @@ export default function ListItem({ item }) {
 
   if (isEditing) {
     content = (
-      <form>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          setIsEditing(false);
+        }}
+      >
         <input
           value={item.text}
           onChange={(e) => handleEditItem({ ...item, text: e.target.value })}
