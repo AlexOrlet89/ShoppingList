@@ -10,8 +10,9 @@ const itemReducer = (state, action) => {
       console.log('DELETE_ITEM');
       console.log(state, action);
     default:
-      return state;
-    //   return state.filter((item) => item.id !== action.payload.id);
+      console.log('nothing happened, boss');
+      return state.filter((item) => item.id !== action.payload.id);
+    //   return state;
   }
 };
 
