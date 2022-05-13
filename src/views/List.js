@@ -4,7 +4,7 @@ import { useItems } from '../context/ItemProvider';
 import ListItem from './ListItem';
 
 export default function List() {
-  const { items } = useItems();
+  const { items, handleDeleteItem } = useItems();
   return (
     <>
       <h3>Today's list</h3>

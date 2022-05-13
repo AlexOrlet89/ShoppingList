@@ -1,12 +1,17 @@
 import React, { createContext, useContext, useReducer } from 'react';
 
-const initialItems = [{ text: 'Eggs' }, { text: 'Bagels' }];
+const initialItems = [{ id: Date.now(), text: 'Eggs' }];
 
 const itemReducer = (state, action) => {
   switch (action.type) {
     case 'ADD_ITEM':
-      console.log(state, action);
       return [{ text: action.payload.text }, ...state];
+    case 'DELETE_ITEM':
+      console.log('DELETE_ITEM');
+      console.log(state, action);
+    default:
+      return state;
+    //   return state.filter((item) => item.id !== action.payload.id);
   }
 };
 
@@ -17,9 +22,12 @@ export const ItemProvider = ({ children }) => {
   const handleAddItem = (text) => {
     dispatch({ type: 'ADD_ITEM', payload: { text } });
   };
+  const handleDeleteItem = (id) => {
+    dispatch({ type: 'DELETE_ITEM', payload: { id } });
+  };
 
   return (
-    <ItemContext.Provider value={{ items, handleAddItem }}>
+    <ItemContext.Provider value={{ items, handleAddItem, handleDeleteItem }}>
       {children}
     </ItemContext.Provider>
   );
