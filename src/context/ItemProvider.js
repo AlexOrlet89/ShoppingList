@@ -8,15 +8,16 @@ const initialItems = [
 const itemReducer = (state, action) => {
   switch (action.type) {
     case 'ADD_ITEM':
-      return [{ text: action.payload.text }, ...state];
+      return [{ id: Date.now(), text: action.payload.text }, ...state];
     case 'DELETE_ITEM':
       console.log('DELETE_ITEM', action.payload.id);
       return state.filter((item) => item.id !== action.payload.id);
     case 'EDIT_ITEM':
-      state.map((item) => {
+      // console.log('editing is working', action.payload.id, action.payload.text);
+      return state.map((item) => {
         if (item.id === action.payload.item.id) {
-          const { text } = action.payload.item.text;
-          return { ...item, text };
+          console.log(item, action.payload.item);
+          return { ...item, text: action.payload.item.text };
         }
         return item;
       });
@@ -36,8 +37,8 @@ export const ItemProvider = ({ children }) => {
   const handleDeleteItem = (id) => {
     dispatch({ type: 'DELETE_ITEM', payload: { id } });
   };
-  const handleEditItem = (id, text) => {
-    dispatch({ type: 'EDIT_ITEM', payload: { id, text } });
+  const handleEditItem = (item) => {
+    dispatch({ type: 'EDIT_ITEM', payload: { item } });
   };
   return (
     <ItemContext.Provider

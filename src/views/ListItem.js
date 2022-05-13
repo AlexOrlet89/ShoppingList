@@ -6,6 +6,7 @@ export default function ListItem({ item }) {
   const [isEditing, setIsEditing] = useState(false);
 
   const handleEditButton = () => {
+    console.log(item);
     setIsEditing(true);
   };
 
@@ -16,7 +17,7 @@ export default function ListItem({ item }) {
       <form>
         <input
           value={item.text}
-          onChange={() => handleEditItem(item.id, item.text)}
+          onChange={(e) => handleEditItem({ ...item, text: e.target.value })}
         />
         <button>Save</button>
       </form>

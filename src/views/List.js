@@ -11,7 +11,7 @@ export default function List() {
       <AddItem />
       <ul>
         {items.map((item) => (
-          <li key={item.text}>
+          <li key={item.id}>
             <ListItem item={item} />
           </li>
         ))}
